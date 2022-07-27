@@ -19,12 +19,18 @@
     "cypress:run": "cypress run --browser chrome",
     "cypress:run:headless": "cypress run --headless --browser chrome",
     "e2e": "start-server-and-test release http://localhost:3201/ cypress:open",
-    "e2e:headless": "start-server-and-test release http://localhost:3201/ cypress:run:headless"
+    "e2e:headless": "start-server-and-test release http://localhost:3201/ cypress:run:headless",
+    "e2e:headless:prebuild": "start-server-and-test start http://localhost:3201/ cypress:run:headless"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "28.1.6",
+    "@types/node": "18.0.6",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "@types/react-redux": "7.1.24",
     "@emotion/react": "11.9.3",
     "@emotion/styled": "11.9.3",
     "@mui/icons-material": "5.8.4",
@@ -44,7 +50,10 @@
     "reselect": "4.1.6",
     "reset-css": "5.0.1",
     "ts-enum-util": "4.0.2",
-    "use-debounce": "8.0.2"
+    "typescript": "4.7.4",
+    "use-debounce": "8.0.2",
+    "sass": "1.53.0",
+    "start-server-and-test": "1.14.0"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
@@ -58,11 +67,6 @@
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.3.0",
     "@testing-library/user-event": "14.3.0",
-    "@types/jest": "28.1.6",
-    "@types/node": "18.0.6",
-    "@types/react": "18.0.15",
-    "@types/react-dom": "18.0.6",
-    "@types/react-redux": "7.1.24",
     "@types/testing-library__jest-dom": "5.14.5",
     "@typescript-eslint/eslint-plugin": "5.30.7",
     "@typescript-eslint/parser": "5.30.7",
@@ -86,12 +90,9 @@
     "jsdom-global": "3.0.2",
     "plop": "3.1.1",
     "prettier": "2.7.1",
-    "sass": "1.53.0",
-    "start-server-and-test": "1.14.0",
     "ts-jest": "28.0.7",
     "tsconfig-paths-jest": "0.0.1",
-    "tsconfig-paths-webpack-plugin": "3.5.2",
-    "typescript": "4.7.4"
+    "tsconfig-paths-webpack-plugin": "3.5.2"
   },
   "prettier": {
     "arrowParens": "always",

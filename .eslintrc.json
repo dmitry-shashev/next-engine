@@ -35,16 +35,25 @@
     "public/*",
     "node_modules/*",
     "doc/*",
+    "src/tests/*",
     "next.config.js",
     "next-env.d.ts",
+    "templates/*",
     "jest.config.js",
     "jest.setup.js",
     "cypress/*",
     "cypress.config.ts",
     "src/tests",
     "*.stories.tsx",
-    "templates/*",
     "plopfile.js"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "createDefaultProgram": true
+      }
+    }
   ],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
