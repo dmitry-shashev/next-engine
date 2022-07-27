@@ -1,6 +1,6 @@
 import { Given, Then, When } from '@badeball/cypress-cucumber-preprocessor'
-import PageCatalog from '../cy-pages/page-catalog'
 import PageProduct from '../cy-pages/page-product'
+import PageCatalog from '../cy-pages/page-catalog'
 
 Given('I visit the catalog page', () => {
   PageCatalog.open()

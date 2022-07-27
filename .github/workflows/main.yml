@@ -30,9 +30,11 @@ jobs:
         with:
           node-version: 16.16
           cache: 'pnpm'
+      - run: pnpm install -P --ignore-scripts --frozen-lockfile
+      - run: pnpm build
       - run: pnpm install
       - run: pnpm cypress-install
-      - run: pnpm e2e:headless
+      - run: pnpm e2e:headless:prebuild
 
   units:
     runs-on: ubuntu-latest

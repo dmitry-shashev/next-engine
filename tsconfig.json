@@ -25,11 +25,17 @@
       "@lib/*": ["src/lib/*"],
       "@store/*": ["src/store/*"],
       "@tests/*": ["src/tests/*"],
-      "@styles/*": ["src/styles/*"],
-      "@cypress-pages/*": ["./cypress/cy-pages/*"]
+      "@styles/*": ["src/styles/*"]
     },
     "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "cypress/", "cypress.config.ts"]
+  "exclude": [
+    "node_modules",
+    "cypress/",
+    "cypress.config.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "src/tests/"
+  ]
 }
