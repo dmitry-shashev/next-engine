@@ -1,0 +1,20 @@
+.unStyledLink {
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: initial;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.preLoaderBlock {
+  display: flex;
+  min-height: 320px;
+  width: 100%;
+  margin: auto;
+}

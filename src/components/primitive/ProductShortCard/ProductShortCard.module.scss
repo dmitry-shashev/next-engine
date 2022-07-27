@@ -1,0 +1,41 @@
+.wrap {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 320px;
+  padding: 12px;
+  text-decoration: none;
+
+  .imageWrap {
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.75);
+  }
+
+  .content {
+    .title {
+      color: var(--mainFontColor);
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .category {
+      color: var(--subFontColor);
+      font-size: 12px;
+    }
+
+    .price {
+      margin-top: 12px;
+      text-decoration: underline;
+      font-weight: 600;
+      color: var(--priceColor);
+      font-size: 18px;
+    }
+  }
+}

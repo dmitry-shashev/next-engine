@@ -1,0 +1,124 @@
+{
+  "extends": [
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
+    "plugin:css-modules/recommended",
+    "plugin:@next/next/recommended"
+  ],
+  "plugins": ["import", "react", "@typescript-eslint", "jest", "css-modules"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": [
+    "public/*",
+    "node_modules/*",
+    "doc/*",
+    "next.config.js",
+    "next-env.d.ts",
+    "jest.config.js",
+    "jest.setup.js",
+    "cypress/*",
+    "cypress.config.ts",
+    "src/tests",
+    "*.stories.tsx",
+    "templates/*",
+    "plopfile.js"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/no-extra-semi": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "jest/expect-expect": "off",
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/array-type": [
+      2,
+      {
+        "default": "generic"
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": "off",
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "react-hooks/exhaustive-deps": "off",
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "object-property-newline": [
+      "error",
+      {
+        "allowAllPropertiesOnSameLine": false
+      }
+    ],
+    "curly": ["error", "all"],
+    "brace-style": ["error", "1tbs"],
+    "semi": "off",
+    "@typescript-eslint/switch-exhaustiveness-check": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "css-modules/no-unused-class": [
+      2,
+      {
+        "camelCase": true
+      }
+    ],
+    "css-modules/no-undef-class": [
+      2,
+      {
+        "camelCase": true
+      }
+    ],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": { "consistent": true, "multiline": true },
+        "ObjectPattern": { "consistent": true, "multiline": true },
+        "ImportDeclaration": { "consistent": true, "multiline": true },
+        "ExportDeclaration": { "multiline": true }
+      }
+    ],
+    "no-console": "error",
+    "no-alert": "error",
+    "no-debugger": "error",
+    "no-eval": "error",
+    "no-extend-native": "error",
+    "no-inline-comments": "error",
+    "no-bitwise": "error",
+    "no-proto": "error",
+    "no-param-reassign": "error"
+  }
+}

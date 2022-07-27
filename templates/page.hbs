@@ -1,0 +1,14 @@
+import React from 'react' import LayoutKind from '@lib/constants/layout-kind'
+import Page from '@lib/interfaces/page/page' import PagePath from
+'@lib/constants/page-path' const
+{{pascalCase pageName}}Page: Page = () => { return (
+<div>
+  <h1>New Page</h1>
+</div>
+) }
+
+{{pascalCase pageName}}Page.pageMeta = { title: 'New Page', description: 'New
+Page', keywords: '', layoutKind: LayoutKind.Main, path: PagePath.{{upperSnakeCase
+  pageName
+}}, } export default
+{{pascalCase pageName}}Page

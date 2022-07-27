@@ -1,0 +1,13 @@
+.wrap {
+  width: 300px;
+
+  :global {
+    .MuiFormControl-root {
+      width: 100%;
+
+      input {
+        padding: 4px 16px;
+      }
+    }
+  }
+}

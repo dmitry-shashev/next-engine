@@ -1,0 +1,6 @@
+node_modules
+doc
+public
+.next
+templates
+pnpm-lock.yaml

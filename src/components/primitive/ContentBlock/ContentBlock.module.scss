@@ -1,0 +1,14 @@
+.contentLoading {
+  :global {
+    .someInput {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  }
+}
+
+.contentNotFound {
+  font-size: 24px;
+  text-align: center;
+  padding: 100px 0;
+}

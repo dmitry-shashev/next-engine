@@ -1,0 +1,20 @@
+.next
+.idea
+.env
+.coverage
+*.log
+.vscode
+node_modules
+cypress/videos
+cypress/screenshots
+
+# os generated files
+.DS_Store
+.DS_Store?
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# tsc generates it even if we set up no emit flag
+# so we just ignore it
+tsconfig.tsbuildinfo

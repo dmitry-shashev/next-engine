@@ -1,0 +1,34 @@
+.wrap {
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    @media screen and (max-width: 720px) {
+      & {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .productsList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+
+    @media screen and (max-width: 900px) {
+      & {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 12px;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      & {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 12px;
+      }
+    }
+  }
+}
