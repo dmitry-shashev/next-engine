@@ -3,7 +3,6 @@ The main idea - to have a working foundation for most common cases
 #### Build and run
 
 In order to build and run
-
 ```bash
 pnpm install
 pnpm release
