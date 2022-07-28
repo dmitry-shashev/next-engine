@@ -1,4 +1,5 @@
 import ProductModel from '@lib/interfaces/product.model'
+import PaginationModel from '../lib/interfaces/pagination.model'
 
 export function getTestProduct(): ProductModel {
   return {
@@ -12,5 +13,13 @@ export function getTestProduct(): ProductModel {
       rate: 12,
       count: 44,
     },
+  }
+}
+
+export function getPagination(): PaginationModel {
+  return {
+    offset: 20,
+    limit: 10,
+    total: 100,
   }
 }
