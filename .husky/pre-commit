@@ -4,3 +4,4 @@
 pnpm prettier-format
 pnpm lint
 pnpm tsc
+pnpm version patch --no-git-tag-version
