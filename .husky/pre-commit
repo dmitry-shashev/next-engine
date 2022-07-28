@@ -6,3 +6,4 @@ pnpm prettier-format
 git add --all
 pnpm lint
 pnpm tsc
+pnpm test
