@@ -2,14 +2,10 @@ import React, { FC } from 'react'
 import { Breadcrumbs, Typography } from '@mui/material'
 import Link from 'next/link'
 import styles from './BreadCrumbsBlock.module.scss'
-
-interface BreadCrumbElem {
-  label: string
-  link?: string
-}
+import BreadCrumbModel from '@lib/interfaces/bread-crumb.model'
 
 interface Props {
-  data: Array<BreadCrumbElem>
+  data: Array<BreadCrumbModel>
 }
 
 const BreadCrumbsBlock: FC<Props> = ({ data }) => {

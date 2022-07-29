@@ -32,11 +32,41 @@ export async function ariaLabelNotInTheDocument(text: string): Promise<void> {
   })
 }
 
-export async function linkIsVisible(text: string, link: string): Promise<void> {
+export async function ariaLabelContainText(
+  ariaLabel: string,
+  text: string | number
+): Promise<void> {
+  await waitFor(() => {
+    expect(screen.getByLabelText(ariaLabel)).toHaveTextContent(String(text))
+  })
+}
+
+export async function linkIsVisible(
+  text: string,
+  link: string,
+  classNames: Array<string> = []
+): Promise<void> {
   const linkElem = screen.getByRole('link', { name: text })
   await waitFor(() => {
     expect(linkElem).toHaveAttribute('href', link)
     expect(linkElem).toBeVisible()
+    if (classNames.length > 0) {
+      expect(linkElem).toHaveClass(...classNames)
+    }
+  })
+}
+
+export async function linkInTheDocument(
+  ariaLabel: string,
+  link: string,
+  classNames: Array<string> = []
+): Promise<void> {
+  const linkElem = screen.getByLabelText(ariaLabel)
+  await waitFor(() => {
+    expect(linkElem).toHaveAttribute('href', link)
+    if (classNames.length > 0) {
+      expect(linkElem).toHaveClass(...classNames)
+    }
   })
 }
 
@@ -47,8 +77,23 @@ export function typeInInputByAriaLabel(
   return userEvent.type(screen.getByLabelText(arialLabel), value)
 }
 
-export function clickByAriaLabel(ariaLabel: string): Promise<void> {
-  return userEvent.click(screen.getByLabelText(ariaLabel))
+export function clickByAriaLabel(
+  ariaLabel: string,
+  position = 0
+): Promise<void> {
+  const elements = screen.getAllByLabelText(ariaLabel)
+  if (!elements[position]) {
+    throw new Error('Click by aria label selector is wrong')
+  }
+  return userEvent.click(elements[position]!)
+}
+
+export function clickByRole(roleName: string, position = 0): Promise<void> {
+  const elements = screen.getAllByRole(roleName)
+  if (!elements[position]) {
+    throw new Error('Click by role selector is wrong')
+  }
+  return userEvent.click(elements[position]!)
 }
 
 export function clickByTestId(testId: string): Promise<void> {
@@ -57,13 +102,4 @@ export function clickByTestId(testId: string): Promise<void> {
 
 export function clickByText(text: string): Promise<void> {
   return userEvent.click(screen.getByText(text))
-}
-
-export async function ariaLabelContainText(
-  ariaLabel: string,
-  text: string | number
-): Promise<void> {
-  await waitFor(() => {
-    expect(screen.getByLabelText(ariaLabel)).toHaveTextContent(String(text))
-  })
 }

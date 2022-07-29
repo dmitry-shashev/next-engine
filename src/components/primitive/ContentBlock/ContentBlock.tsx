@@ -23,7 +23,9 @@ const ContentBlock: FC<Props> = ({
           {data.length > 0 ? (
             <>{children}</>
           ) : (
-            <CircularProgress className="preLoaderBlock" />
+            <div aria-label="Pre Loader" className="preLoaderBlock">
+              <CircularProgress />
+            </div>
           )}
         </>
       ) : (

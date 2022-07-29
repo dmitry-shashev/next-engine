@@ -21,7 +21,13 @@ pnpm add -D husky
 #### Add all necessary scripts
 
 ```bash
+pnpx husky add .husky/pre-commit "pnpm version patch --no-git-tag-version"
 pnpx husky add .husky/pre-commit "pnpm prettier-format"
-pnpx husky add .husky/pre-commit "pnpm lint"
+pnpx husky add .husky/pre-commit "git add --all"
 pnpx husky add .husky/pre-commit "pnpm tsc"
+
+pnpx husky add .husky/pre-push "pnpm lint"
+pnpx husky add .husky/pre-push "pnpm test"
 ```
+
+> it will create `.husky/pre-commit` and `.husky/pre-push` hooks
