@@ -20,9 +20,13 @@ const ProductShortCard: FC<Props> = ({ product }) => {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.title}>{product.title}</div>
-          <div className={styles.category}>{product.category}</div>
-          <div className={styles.price}>
+          <div aria-label="title" className={styles.title}>
+            {product.title}
+          </div>
+          <div aria-label="category" className={styles.category}>
+            {product.category}
+          </div>
+          <div aria-label="price" className={styles.price}>
             {StrHelper.formatMoney(product.price)}
           </div>
         </div>
