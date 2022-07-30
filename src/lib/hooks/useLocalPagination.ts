@@ -17,7 +17,6 @@ function useLocalPagination<T>(
   data: Array<T>
 ): UseLocalPaginationResult<T> {
   const router = useRouter()
-
   const currentPaginationKey = `pagination-${paginationKey}`
 
   const [pagination, setPagination] = useState<PaginationModel>({

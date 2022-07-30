@@ -1,6 +1,28 @@
-import { waitFor } from '@testing-library/react'
+import React from 'react'
+import { render, RenderResult, waitFor } from '@testing-library/react'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { ReactElement } from 'react'
+import { Provider } from 'react-redux'
+import Layout from '@components/composite/layouts/Layout'
+import EMPTY_PAGE_META from '@lib/constants/empty-page-meta'
+import { store } from '@store/store'
+import ObjHelper from '../lib/helpers/obj.helper'
+
+export async function renderWithProviders(
+  component: ReactElement,
+  waitForText?: string
+): Promise<RenderResult> {
+  const result = render(
+    <Provider store={ObjHelper.cloneDeep(store)}>
+      <Layout pageMeta={EMPTY_PAGE_META}>{component}</Layout>
+    </Provider>
+  )
+  if (waitForText) {
+    await screen.findByText(waitForText)
+  }
+  return result
+}
 
 export async function textNotInTheDocument(text: string): Promise<void> {
   const re = new RegExp(text)
@@ -17,10 +39,17 @@ export async function textInTheDocument(text: string): Promise<void> {
   })
 }
 
-export async function ariaLabelInTheDocument(text: string): Promise<void> {
+export async function ariaLabelInTheDocument(
+  text: string,
+  amount = 1
+): Promise<void> {
   const re = new RegExp(text)
   await waitFor(() => {
-    expect(screen.getByLabelText(re)).toBeInTheDocument()
+    const elems = screen.getAllByLabelText(re)
+    elems.forEach((elem) => {
+      expect(elem).toBeInTheDocument()
+    })
+    expect(elems).toHaveLength(amount)
   })
 }
 
@@ -70,11 +99,13 @@ export async function linkInTheDocument(
   })
 }
 
-export function typeInInputByAriaLabel(
+export async function typeInInputByAriaLabel(
   arialLabel: string,
   value: string
 ): Promise<void> {
-  return userEvent.type(screen.getByLabelText(arialLabel), value)
+  const elem = screen.getByLabelText(arialLabel)
+  await userEvent.clear(elem)
+  return userEvent.type(elem, value)
 }
 
 export function clickByAriaLabel(
@@ -102,4 +133,12 @@ export function clickByTestId(testId: string): Promise<void> {
 
 export function clickByText(text: string): Promise<void> {
   return userEvent.click(screen.getByText(text))
+}
+
+export async function nextPaginationPage(): Promise<void> {
+  await clickByAriaLabel('Go to next page')
+}
+
+export async function prevPaginationPage(): Promise<void> {
+  await clickByAriaLabel('Go to previous page')
 }
