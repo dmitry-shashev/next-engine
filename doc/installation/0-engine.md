@@ -100,3 +100,9 @@ pnpm add use-debounce
 ```bash
 pnpm add react-hook-form
 ```
+
+#### Add lodash
+
+```bash
+pnpm add lodash @types/lodash
+```

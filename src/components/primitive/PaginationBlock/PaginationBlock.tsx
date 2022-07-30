@@ -34,7 +34,7 @@ const PaginationBlock: FC<Props> = ({ pagination, onChange }) => {
 
   const currentPage = PaginationHelper.getCurrentPage(pagination)
   return (
-    <div className={styles.wrap}>
+    <div aria-label="Pagination Block" className={styles.wrap}>
       <TablePagination
         rowsPerPageOptions={allPossibleLimits}
         component="div"

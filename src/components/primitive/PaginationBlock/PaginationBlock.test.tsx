@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import PaginationBlock from './PaginationBlock'
 import { getPagination } from '@tests/test-data'
-import { clickByAriaLabel, clickByRole } from '@tests/utils'
+import { clickByRole, nextPaginationPage } from '@tests/utils'
 
 describe('PaginationBlock', () => {
   it('component', async () => {
@@ -11,7 +11,7 @@ describe('PaginationBlock', () => {
     render(<PaginationBlock pagination={pagination} onChange={onChange} />)
 
     // next page
-    await clickByAriaLabel('Go to next page')
+    await nextPaginationPage()
     expect(onChange).toBeCalledWith({
       ...pagination,
       offset: pagination.limit + pagination.offset,

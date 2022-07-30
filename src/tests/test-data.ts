@@ -1,9 +1,9 @@
 import ProductModel from '@lib/interfaces/product.model'
-import PaginationModel from '../lib/interfaces/pagination.model'
-import PageMeta from '../lib/interfaces/page/page-meta'
-import PagePath from '../lib/constants/page-path'
-import LayoutKind from '../lib/constants/layout-kind'
-import BreadCrumbModel from '../lib/interfaces/bread-crumb.model'
+import PaginationModel from '@lib/interfaces/pagination.model'
+import PageMeta from '@lib/interfaces/page/page-meta'
+import PagePath from '@lib/constants/page-path'
+import LayoutKind from '@lib/constants/layout-kind'
+import BreadCrumbModel from '@lib/interfaces/bread-crumb.model'
 
 export function getTestProduct(): ProductModel {
   return {
@@ -18,6 +18,25 @@ export function getTestProduct(): ProductModel {
       count: 44,
     },
   }
+}
+
+export function getTestProductsList(): Array<ProductModel> {
+  const result: Array<ProductModel> = []
+  for (let i = 0; i < 12; ++i) {
+    result.push({
+      id: i,
+      image: `/${i}`,
+      title: `t${i}`,
+      description: `Some ${i}`,
+      category: `c${i}`,
+      price: i * 10,
+      rating: {
+        rate: i * 100,
+        count: i * 1000,
+      },
+    })
+  }
+  return result
 }
 
 export function getPagination(): PaginationModel {

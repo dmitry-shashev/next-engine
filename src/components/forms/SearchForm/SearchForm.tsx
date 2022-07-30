@@ -21,12 +21,19 @@ const SearchForm: FC<FormProps<SearchFormData>> = ({
   })
 
   return (
-    <form className={styles.wrap} onSubmit={submitDebounced}>
+    <form
+      aria-label="Search Form"
+      className={styles.wrap}
+      onSubmit={submitDebounced}
+    >
       <Controller
         name="search"
         control={control}
         render={({ field: { onChange, value } }): ReactElement => (
           <TextField
+            inputProps={{
+              'aria-label': 'Search Input',
+            }}
             onChange={onChange}
             value={value}
             placeholder="Search ..."
