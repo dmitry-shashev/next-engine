@@ -6,22 +6,38 @@ import { ReactElement } from 'react'
 import { Provider } from 'react-redux'
 import Layout from '@components/composite/layouts/Layout'
 import EMPTY_PAGE_META from '@lib/constants/empty-page-meta'
-import { store } from '@store/store'
-import ObjHelper from '../lib/helpers/obj.helper'
+import { AppStore, store } from '@store/store'
+import ObjHelper from '@lib/helpers/obj.helper'
+import RequestService from '@lib/services/request.service'
+import { getTestProductsList } from './test-data'
+
+jest.mock('@lib/services/request.service')
+
+function mockServices() {
+  // @ts-ignore
+  RequestService.getAllProducts.mockImplementation(async () =>
+    getTestProductsList()
+  )
+}
 
 export async function renderWithProviders(
   component: ReactElement,
   waitForText?: string
-): Promise<RenderResult> {
+): Promise<RenderResult & { store: AppStore }> {
+  mockServices()
+  const newStore = ObjHelper.cloneDeep(store)
   const result = render(
-    <Provider store={ObjHelper.cloneDeep(store)}>
+    <Provider store={newStore}>
       <Layout pageMeta={EMPTY_PAGE_META}>{component}</Layout>
     </Provider>
   )
   if (waitForText) {
     await screen.findByText(waitForText)
   }
-  return result
+  return {
+    ...result,
+    store: newStore,
+  }
 }
 
 export async function textNotInTheDocument(text: string): Promise<void> {
