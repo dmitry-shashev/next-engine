@@ -10,6 +10,10 @@ import { AppStore, store } from '@store/store'
 import ObjHelper from '@lib/helpers/obj.helper'
 import RequestService from '@lib/services/request.service'
 import { getTestProductsList } from './test-data'
+import { PayloadAction } from '@reduxjs/toolkit'
+import { requestSlice } from '@store/reducers/requestSlice'
+import { errorSlice } from '@store/reducers/errorSlice'
+import { put } from '@redux-saga/core/effects'
 
 jest.mock('@lib/services/request.service')
 
@@ -157,4 +161,30 @@ export async function nextPaginationPage(): Promise<void> {
 
 export async function prevPaginationPage(): Promise<void> {
   await clickByAriaLabel('Go to previous page')
+}
+
+export function testSimpleRequest<T>(
+  responseData: T,
+  action: PayloadAction,
+  sagaName: (a: PayloadAction) => Generator,
+  checkRequest: (requestGenerator: Generator) => void,
+  checkResponse: (responseGenerator: Generator) => void
+) {
+  const { clearError } = errorSlice.actions
+  const { startRequest, stopRequest } = requestSlice.actions
+  const g = sagaName(action)
+
+  const simpleGenerator = g.next().value as Generator
+  expect(simpleGenerator.next().value).toEqual(put(clearError(action.type)))
+  expect(simpleGenerator.next().value).toEqual(put(startRequest(action.type)))
+
+  // request
+  const requestGenerator = simpleGenerator.next().value
+  checkRequest(requestGenerator)
+
+  // response
+  const responseGenerator = simpleGenerator.next(responseData).value
+  checkResponse(responseGenerator)
+
+  expect(simpleGenerator.next().value).toEqual(put(stopRequest(action.type)))
 }
