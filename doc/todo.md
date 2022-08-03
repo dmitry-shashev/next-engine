@@ -1,7 +1,8 @@
 - [x] Tests for smart components
-- [ ] Tests for sagas
+- [x] Tests for sagas
+- [x] Finish tests for composite components
+- [x] Tests for forms
 - [ ] Tests for pages (specs)
-- [ ] Tests for forms
 
 ***
 
